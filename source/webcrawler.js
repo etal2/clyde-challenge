@@ -5,7 +5,7 @@ const INDEX_URL = "https://en.wikipedia.org/wiki/List_of_automobile_sales_by_mod
 const WIKI_BASE_URL = "https://en.wikipedia.org"
 
 async function fetchHTML(url) {
-  const { data } = await axios.get(url)
+  const { data } = await axios.get(url, { baseURL: WIKI_BASE_URL })
   return data;
 }
 
@@ -31,11 +31,9 @@ function parseIndexData(html) {
 function parseIndexElement(i, el) {
     const $el = cheerio(el)
     
-    const modelUrl = $el.attr('href')
-    const modelUrlFull = modelUrl ? WIKI_BASE_URL + modelUrl : null;
     const rowdata = {
         name: $el.text(),
-        link: modelUrlFull
+        link: $el.attr('href')
     }
     
     return rowdata
