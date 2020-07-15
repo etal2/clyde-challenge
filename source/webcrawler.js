@@ -87,7 +87,7 @@ function extractTop10(words) {
     //sort array
     wordsCountArray.sort((a,b) => { return (a.count > b.count) ? -1 : ((b.count > a.count) ? 1 : 0)} )
 
-    return wordsCountArray.slice(0, 10);
+    return wordsCountArray.slice(0, 10)
 }
 
 module.exports = {
